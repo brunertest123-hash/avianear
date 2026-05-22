@@ -1,0 +1,13 @@
+# Python
+backend/venv/
+backend/venv311/
+backend/_pycache_/
+*.pyc
+
+# Node
+frontend/node_modules/
+frontend/build/
+
+# Temp files
+*.wav
+*.webm
