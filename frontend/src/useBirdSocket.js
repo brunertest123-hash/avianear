@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-export default function useBirdSocket(url = "wss://avianear.onrender/ws") {
+export default function useBirdSocket(url = "wss://avianear.onrender.com/ws") {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState("disconnected");
   const wsRef = useRef(null);
