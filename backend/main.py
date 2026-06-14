@@ -114,12 +114,14 @@ async def process_audio(audio_bytes: bytes, output_dir: str, ws: WebSocket):
             samples = np.frombuffer(raw, dtype=np.int16).astype(np.float32)
             rms = np.sqrt(np.mean(samples ** 2)) if len(samples) > 0 else 0
 
-        if rms < 200:
+        print(f"RMS value: {rms}")
+        if rms < 10:
             print("Silent chunk, skipping")
             return
 
         await loop.run_in_executor(None, run_birdnet, wav_path, output_dir)
         detections = parse_results(output_dir, wav_path)
+        print(f"Detections found: {len(detections)} - {detections}")
 
         for det in detections:
             try:
