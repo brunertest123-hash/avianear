@@ -1,6 +1,8 @@
 import asyncio
 import tempfile
 import os
+os.environ['MALLOC_ARENA_MAX']='2'
+os.environ['TF_CPP_MIN_LOG_LEVEL']='3'
 import time
 import json
 import csv
