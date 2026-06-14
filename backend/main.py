@@ -59,7 +59,7 @@ def convert_to_wav(webm_bytes: bytes) -> str:
         "-ac", "1",
         "-sample_fmt", "s16",
         wav_path
-    ], capture_output=True)
+    ], capture_output=True, timeout=10)
 
     os.unlink(webm_tmp.name)
 
@@ -107,6 +107,7 @@ async def process_audio(audio_bytes: bytes, output_dir: str, ws: WebSocket):
         loop = asyncio.get_event_loop()
 
         wav_path = await loop.run_in_executor(None, convert_to_wav, audio_bytes)
+        print(f"WAV path: {wav_path}")
 
         import wave
         with wave.open(wav_path, "rb") as wf:
